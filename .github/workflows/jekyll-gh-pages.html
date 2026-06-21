@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiumefreddo - Selección de Peso</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; background-color: #ff7675; color: white; padding: 15px 20px; font-size: 24px; font-weight: bold; letter-spacing: 1px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 2000; text-align: center; }
+        body { padding: 20px; background-color: #fff5f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding-top: 80px; }
+        .compra-contenedor { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); width: 100%; max-width: 450px; border-top: 5px solid #ff7675; }
+        h2 { font-size: 22px; margin-bottom: 20px; color: #2d3436; text-align: center; }
+        .opciones-pesos { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+        .radio-peso { display: inline-block; margin-right: 10px; width: 18px; height: 18px; accent-color: #ff7675; }
+        .label-peso { background: #f8f9fa; border: 2px solid #dee2e6; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .resumen-seccion { font-size: 18px; font-weight: bold; text-align: center; color: #4a4a4a; background: #fff5f5; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .btn-pedir { background: #2ecc71; font-size: 16px; padding: 14px; font-weight: bold; color: white; border: none; border-radius: 8px; width: 100%; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">Fiumefreddo</nav>
+
+    <div class="compra-contenedor">
+        <h2>Elegí el peso de tu helado:</h2>
+        <div class="opciones-pesos">
+            <label class="label-peso">
+                <span><input type="radio" name="peso_helado" value="Cuarto" checked class="radio-peso" onclick="actualizarTotal('Cuarto', 9000)"> 1/4 Kilo (Cuarto)</span>
+                <span style="color:#2ecc71;">$9.000</span>
+            </label>
+            <label class="label-peso">
+                <span><input type="radio" name="peso_helado" value="Medio" class="radio-peso" onclick="actualizarTotal('Medio', 14000)"> 1/2 Kilo (Medio)</span>
+                <span style="color:#2ecc71;">$14.000</span>
+            </label>
+            <label class="label-peso">
+                <span><input type="radio" name="peso_helado" value="Kilo" class="radio-peso" onclick="actualizarTotal('Kilo', 22000)"> 1 Kilo</span>
+                <span style="color:#2ecc71;">$22.000</span>
+            </label>
+        </div>
+
+        <div class="resumen-seccion">Total: $<span id="precio-total">9000</span></div>
+        <button class="btn-pedir" onclick="confirmarYRedirigir()">Confirmar y Continuar</button>
+    </div>
+
+    <script>
+        let pesoSeleccionado = "Cuarto";
+        let precioActual = 9000;
+
+        function actualizarTotal(nombre, precio) {
+            pesoSeleccionado = nombre;
+            precioActual = precio;
+            document.getElementById('precio-total').textContent = precio;
+        }
+
+        function confirmarYRedirigir() {
+            window.location.href = `sabores.html?peso=${pesoSeleccionado}&total=${precioActual}`;
+        }
+    </script>
+</body>
+</html>
